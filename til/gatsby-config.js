@@ -31,7 +31,7 @@ module.exports = {
                     },
                     {
                         name: `Contact`,
-                        url: `mailto:09mer@kakao.com`,
+                        url: `mailto:09merus@gmail.com`,
                     },
                 ],
             },

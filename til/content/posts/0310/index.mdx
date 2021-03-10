@@ -1,0 +1,194 @@
+---
+title: "210310 - 객체, Pribitive & Reference, Scope & Closure"
+date: 2021-03-10
+tags:
+    - TIL
+    - JS
+---
+
+---
+
+### 코플릿
+
+코플릿 풀다가 if문 안에 `!key in obj` 이렇게 적으니까 안되따!~!
+
+`key in obj === false` 값을 검사하고 싶을 때는
+
+`!(key in obj)`이렇게 괄호로 감싸주면 된다
+
+---
+
+## 원시 자료형과 참조 자료형
+
+원시 자료형 같은 경우 값 자체에 대한 변경이 불가능하지만, 변수에 다른 데이터를 할당 할 수 있다.
+
+### stack과 heap
+
+원시 자료형은 `stack`에,
+
+참조 자료형은 `heap`에 저장된다
+
+---
+
+## Scope
+
+### Scope란 변수 접근 규칙에 따른 유효 범위이다
+
+-   프로그래밍 언어는 각각의 변수 접근 규칙을 갖고 있다
+-   변수와 그 값이 어디서부터 어디까지 유효한지 판단하는 범위
+-   자바스크립트는 기본적으로, 함수가 선언되는 동시에 자신만의 `Scope`를 가진다
+
+### Local Scope와 Global Scope의 차이
+
+-   Local Scope에서는 바깥 변수/함수에 접근하는 것이 가능하다.
+-   Global Scope에서는 Local Scope 안에 있는 변수/함수에 접근하는 것이 불가능
+
+```js
+let greeting = "Hello";
+function greetSomeone() {
+    let fistName = "Josh";
+    return greeting + " " + firstName;
+}
+greetingSomeone(); // => "Hello Josh"
+firstName; // => ReferenceError
+```
+
+함수 안(`Local Scope`)에서 선언된 변수는 영역 밖에서 사용할 수 없다
+
+<br />
+
+-   Scope는 중첩이 가능하다
+    -   함수 안에 함수를 넣을 수 있다.
+-   `Global Scope`는 최상단의 Scope로, `Global Scope`에서 정의된 변수(전역 변수)는 어디서든 접근이 가능하다
+-   지역 변수(`Local Scope`)는 함수 내에서 전역 변수보다 더 높은 우선순위를 가진다.
+
+```js
+✅ let name = "Richard";
+function showName() {
+    ✅ let name = "Jack"; // 지역 변수
+    console.log(name);
+}
+console.log(name); // Richard
+showName(); // Jack
+console.log(name); // Richard
+```
+
+위 코드에서 ✅ 부분에 선언된 변수들은 서로 다른 변수이다. (전역 변수, 지역 변수)
+
+지역 변수가 전역변수보다 더 높은 우선순위를 가지기 때문에, 함수를 실행하면 함수 안에서 실행된`console.log(name)`에 name부분에 지역변수를 가져온다
+
+---
+
+### Function Scope와 Block Scope의 차이
+
+Block 은 중괄호로 시작하고, 끝나는 단위이다.
+
+```js
+if (true) {
+    // Block
+}
+for (;;) {
+    // Block
+}
+
+{
+    // Block
+}
+```
+
+var vs let
+
+-   var은 함수 스코프를 따른다
+-   let은 Block 단위
+    ,,,?
+
+```js
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
+console.log("final i:", i); // => Error
+```
+
+```js
+for (var i = 0; i < 5; i++) {
+    console.log(i);
+}
+console.log("final i:", i); // => 5
+```
+
+..??
+
+```js
+function greetingSomeone(firstName) {
+    var time = "night";
+    if (time === "night") {
+        var greeting = "Good Night";
+    }
+
+    return greeting + " " + firstName;
+}
+
+greetingSomeone("Steve"); // => Good Night Steve
+```
+
+var 키워드를 사용해 변수를 선언할 경우 if문 안에서 변수를 선언해도 함수단위의 스코프에 정의되게 된다.
+
+즉 if 문 밖 || 함수 스코프 안에서 변수를 불러와도 에러가 나지 않는다.
+
+만약 var 키워드를 let으로 바꾼다면 변수는 if문 안 Block Scope에 한정되어 있기 때문에 위와 같이 if문을 빠져나와 변수를 호출하면 에러가 난다.
+
+var은 그냥 쓰지말자...
+
+**+**const 키워드
+
+-   값이 변하지않는 변수, 즉 상수
+-   let과 같이 `Block Scope`를 따른다.
+-   값을 재정의하면 _TypeError_
+
+---
+
+### 전역 범위를 대표하는 객체 `window`
+
+`Global Scope`에서 선언된 함수, `var`키워드를 이용해 선언된 변수는 `window`객체와 연결된다.
+
+```js
+let hi = "하이"; // window 객체에 연결되지 않음
+var bye = "바이"; // window 객체에 연결 됨!
+function hello() {
+    console.log("헬로");
+} // window 객체에 연결!!!
+```
+
+_전역 범위에 너무 많은 변수를 선언하지 않도록 주의_
+
+---
+
+## Closure
+
+클로져는 함수와 함수가 선언된 어휘적(lexical)환경의 조합을 말한다. 이 환경은 클로저가 생성된 시점의 유효 범위 내에 있는 모든 지역 변수로 구성된다.
+
+...?ㅠㅠ
+
+주관식 문제에 뭐라고 적었는지 기억도 안난다...
+
+여기부터 내일 다시 적기
+
+---
+
+클로저 함수: 클로저는 외부함수의 컨텍스트에 접근할 수 있는 내부함수를 뜻합니다. 외부함수의 실행이 종료된 후에도, 클로저 함수는 외부함수의 스코프, 즉, 함수가 선언된 어휘적 환경에 접근할 수 있습니다.
+
+클로저 사용 예시: 클로저를 통해 커링(currying, 함수 하나가 n개의 인자를 받는 대신 n개의 함수를 만들어 각각 인자를 받게 하는 방법), 클로저 모듈(변수를 외부 함수 스코프 안쪽에 감추어, 변수가 함수 밖에서 노출되는 것을 막는 방법) 등의 패턴을 구현할 수 있습니다.
+
+클로저의 단점: 일반 함수였다면 함수 실행 종료 후 가비지 컬렉션(참고 자료: MDN '자바스크립트의 메모리 관리') 대상이 되었을 객체가, 클로저 패턴에서는 메모리 상에 남아 있게 됩니다. 외부 함수 스코프가 내부함수에 의해 언제든지 참조될 수 있기 때문입니다. 따라서 클로저를 남발할 경우 퍼포먼스 저하가 발생할 수도 있습니다.
+
+자바스크립트는 가비지 컬렉션을 통해 메모리 관리를 합니다. 객체가 참조 대상이 아닐 때, 가비지 컬렉션에 의해 자동으로 메모리 할당이 해제됩니다.
+
+---
+
+### rest parameter, rest syntax
+
+### bigint
+
+### symbol
+
+### linked list

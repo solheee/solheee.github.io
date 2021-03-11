@@ -1,0 +1,165 @@
+---
+title: "210311 - CLI 명령어, Git, 객체 다루기"
+date: 2021-03-11
+tags:
+    - TIL
+    - CLI
+    - GIT
+---
+
+---
+
+## CLI
+
+디렉토리 이동
+
+-   `cd ~` : 홈 디렉토리
+-   `cd /` : 최상위 디렉토리
+-   `cd .` : 현재 디렉토리
+-   `cd ..` : 부모 디렉토리
+-   `pwd` : 현재 디렉토리 위치 확인
+
+주요 명령어
+
+-   `touch (file_name)` : 빈 파일 생성
+-   `mkdir (dir_name)` : 디렉토리 생성
+-   `cat (file_name)`: 텍스트 형태의 파일 확인
+-   `mv (file_or_dir) (target_dir)`: 파일 및 디렉토리 옮기기
+    `mv (file_name) (file_name)` : 파일명 변경
+-   `cp (file) (target_dir)` : 복사
+-   `cp -r (folder)` : 복사
+
+삭제 (영구적으로 삭제되니 주의)
+
+-   `rm (file_name)` : 파일 영구 삭제
+-   `rm -r (dir_name)` : 디렉토리 영구 삭제
+
+기타
+
+-   `sudo` : 관리자 권한으로 실행
+-   `code .` : vscode로 실행
+
+---
+
+## Git
+
+remote repository에서 origin과 upstream의 차이점
+
+**자주 쓰는 명령어**
+
+-   `git add (파일명)` : 변경 내용을 staging area에 추가(파일명 대신 . 을 입력하면 전체 선택)
+-   `git status` : 파일 상태 확인 (staging area에 추가 되었는지 구분)
+-   `git commit -m "(메시지)"` : 커밋메시지 입력
+-   `git log` : 커밋한 기록 확인
+-   `git push` : 푸쉬
+-   `git remote -v` : 리모트 저장소 확인
+
+### branch와 marge
+
+**브랜치의는 쉽게 말해 평행세계이다.**
+
+-   `git branch (브랜치 이름)` : 브랜치를 추가할 수 있다
+-   `git checkout (브랜치 이름)` : 브랜치 이동
+
+-   브랜치 이름을 슬래시(/)로 다음과 같이 작성하면 `feat/comment`, `feat/heart` feat그룹으로 묶인다.
+
+<br />
+
+**두 버전을 합칠 수 있는 머지(merge)**
+
+-   `git checkout (브랜치 이름)` : base가 될 브랜치로 이동
+-   `git merge (브랜치 이름)` : base 브랜치에 합치기
+
+```shell
+git checkout master
+git merge feat/comment
+```
+
+마스터 브랜치에 코멘트 브랜치를 병합함
+
+<br />
+
+충돌이 난다면...
+`conflict`
+이거는 나중에
+
+---
+
+### Koans 과제 (풀면서 생소했던)
+
+-   `Object.keys(obj).length` : 객체의 length를 확인하는 법
+-   `Object.assign({}, obj)` : 참조 값이 아니라 값 그대로 복사
+    -   앞에 인자가 타겟이고, 뒤 인자가 소스...
+
+koans 과제에 객체 마지막 문제에서 `Object.assign()` 이거 때문에 거진 한시간 머리를 쥐어 뜯어야했다.
+
+```js
+let a = { a: 1, b: 2 };
+let b = Object.assign({}, a);
+
+delete a.a;
+
+console.log(a); // => {b: 2}
+console.log(b); // => {a: 1, b: 2}
+```
+
+<br />
+
+```js
+let a = { a: 1, b: 2, obj: { sol: "솔", hee: "흐이" } };
+let b = Object.assign({}, a);
+
+delete a.obj["sol"];
+
+console.log(a.obj); // => {hee: "흐이"}
+console.log(b.obj); // => {hee: "흐이"}
+```
+
+-   `Object.assign({}, obj)`을 이용해 깊은 복사를 하면, 두번 째로 들어온 인자(소스 값)가 객체에 대한 참조일 때 해당 참조 값만 복사한다. (“For deep cloning, we need to use alternatives because Object.assign() copies property values. If the source value is a reference to an object, it only copies that reference value.”)
+
+### shallow copy, deep copy
+
+-   shallow copy : 사본을 만들어내지 않고 원본을 참조하도록 복사하는 방법
+-   deep copy : 완벽하게 원본과 사본을 나눠 복사하는 방법
+-   맞나..
+
+### arguments
+
+-   arguments는 모든 함수의 실행 시 자동으로 생성되는 객체
+
+### Object.keys(obj)
+
+-   객체의 키값을 배열화 한다
+
+```js
+let obj = {
+    a: 123,
+    b: "kimsol",
+    c: true,
+};
+
+let arr = Object.keys(obj);
+console.log(arr); // => ["a", "b", "c"]
+```
+
+### Array.from(argumentsObj)
+
+-   배열을 객체로
+
+```js
+let arr = ["아..", "ㅠㅠ"];
+let obj = Array.from(arr);
+
+console.log(obj); // => {0: "아..", 1: "ㅠㅠ"};
+```
+
+---
+
+### ToDo
+
+-   [ ] 계산기 키보드 이벤트 구현
+-   [ ] rest parameter, rest syntax
+-   [ ] bigint, symbol
+-   [ ] linked list
+
+---

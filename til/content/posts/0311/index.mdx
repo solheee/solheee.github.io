@@ -115,13 +115,14 @@ console.log(a.obj); // => {hee: "흐이"}
 console.log(b.obj); // => {hee: "흐이"}
 ```
 
--   `Object.assign({}, obj)`을 이용해 깊은 복사를 하면, 두번 째로 들어온 인자(소스 값)가 객체에 대한 참조일 때 해당 참조 값만 복사한다. (“For deep cloning, we need to use alternatives because Object.assign() copies property values. If the source value is a reference to an object, it only copies that reference value.”)
+-   `Object.assign({}, obj)`을 이용해 깊은 복사를 하면, 두번 째로 들어온 인자(소스 값)가 객체에 대한 참조일 때 해당 참조 값만 복사한다. 결과적으로 깊은 복사가 되지 않는다. (“For deep cloning, we need to use alternatives because Object.assign() copies property values. If the source value is a reference to an object, it only copies that reference value.”)
+-   `Object.assign({}, obj)` 는 shallow copy 얕은 복사
 
 ### shallow copy, deep copy
 
 -   shallow copy : 사본을 만들어내지 않고 원본을 참조하도록 복사하는 방법
 -   deep copy : 완벽하게 원본과 사본을 나눠 복사하는 방법
--   맞나..
+-   자바스크립트에서는 deep copy가 어렵다
 
 ### arguments
 
@@ -152,14 +153,5 @@ let obj = Array.from(arr);
 
 console.log(obj); // => {0: "아..", 1: "ㅠㅠ"};
 ```
-
----
-
-### ToDo
-
--   [ ] 계산기 키보드 이벤트 구현
--   [ ] rest parameter, rest syntax
--   [ ] bigint, symbol
--   [ ] linked list
 
 ---

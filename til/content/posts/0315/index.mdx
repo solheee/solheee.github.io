@@ -1,0 +1,37 @@
+---
+title: "210315 - CSS 와이어프레임"
+date: 2021-03-15
+tags:
+    - TIL
+    - CSS
+---
+
+### css 작명법
+- bem 방법론
+- acss 방법론
+
+
+### flex 단축 속성
+- `flex: <grow> <shrink> <basis>` (기본값 0 1 auto)
+- `flex-flow: <direction> <wrap>`(기본값 row nowrap)
+
+```css
+.target {
+    flex-grow: 0; 
+    flex-shrink: 1;
+    flex-basis: auto; 
+}
+```
+- grow와 shrink는 단위가 없다 (비례하는 값)
+- grow가 0일 때, basis 크기를 지정하면 그 크기는 보장된다
+
+
+---
+블로그에 드디어 keep-all을 넣었다..!
+
+```ts
+"p": {
+    wordBreak: `keep-all`,
+},
+```
+블로그 테마 고치는 법 알았으니까 시간 날 때 조금씩 바꿔야지

@@ -3,6 +3,8 @@
 <url> <loc>https://minimal-blog.lekoarts.de/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://minimal-blog.lekoarts.de/blog</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://minimal-blog.lekoarts.de/tags</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://minimal-blog.lekoarts.de/vim-plugin</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://minimal-blog.lekoarts.de/til-git-node-js</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://minimal-blog.lekoarts.de/til-apt-node-js-vim</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://minimal-blog.lekoarts.de/til-클로저-es-6-es-11</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://minimal-blog.lekoarts.de/날씨-어플-후기</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -29,4 +31,5 @@
 <url> <loc>https://minimal-blog.lekoarts.de/tags/js</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://minimal-blog.lekoarts.de/tags/node-js</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://minimal-blog.lekoarts.de/tags/til</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://minimal-blog.lekoarts.de/tags/vim</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 </urlset>

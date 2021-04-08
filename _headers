@@ -62,6 +62,24 @@
   Link: </component---node-modules-lekoarts-gatsby-theme-minimal-blog-core-src-templates-tags-query-tsx-35d09f4d1f6a70300fce.js>; rel=preload; as=script
   Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
   Link: </page-data/tags/page-data.json>; rel=preload; as=fetch; crossorigin
+/vim-plugin
+  Link: </webpack-runtime-35d8959d0cf20f1be009.js>; rel=preload; as=script
+  Link: </framework-cd3e1e804d552fa282ef.js>; rel=preload; as=script
+  Link: </app-5f44fc4dd7fc1894e296.js>; rel=preload; as=script
+  Link: </styles-e9d24b1846c7d6eb9685.js>; rel=preload; as=script
+  Link: </aed2e917f30c051bccba91aa15989a75fd0bd633-f8ae38442ebcaca87b42.js>; rel=preload; as=script
+  Link: </component---node-modules-lekoarts-gatsby-theme-minimal-blog-core-src-templates-post-query-tsx-0d6e8a3aedaf7733aadd.js>; rel=preload; as=script
+  Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </page-data/vim-plugin/page-data.json>; rel=preload; as=fetch; crossorigin
+/til-git-node-js
+  Link: </webpack-runtime-35d8959d0cf20f1be009.js>; rel=preload; as=script
+  Link: </framework-cd3e1e804d552fa282ef.js>; rel=preload; as=script
+  Link: </app-5f44fc4dd7fc1894e296.js>; rel=preload; as=script
+  Link: </styles-e9d24b1846c7d6eb9685.js>; rel=preload; as=script
+  Link: </aed2e917f30c051bccba91aa15989a75fd0bd633-f8ae38442ebcaca87b42.js>; rel=preload; as=script
+  Link: </component---node-modules-lekoarts-gatsby-theme-minimal-blog-core-src-templates-post-query-tsx-0d6e8a3aedaf7733aadd.js>; rel=preload; as=script
+  Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </page-data/til-git-node-js/page-data.json>; rel=preload; as=fetch; crossorigin
 /til-apt-node-js-vim
   Link: </webpack-runtime-35d8959d0cf20f1be009.js>; rel=preload; as=script
   Link: </framework-cd3e1e804d552fa282ef.js>; rel=preload; as=script
@@ -296,6 +314,15 @@
   Link: </component---node-modules-lekoarts-gatsby-theme-minimal-blog-core-src-templates-tag-query-tsx-6d5261cb188f0457dd2e.js>; rel=preload; as=script
   Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
   Link: </page-data/tags/til/page-data.json>; rel=preload; as=fetch; crossorigin
+/tags/vim
+  Link: </webpack-runtime-35d8959d0cf20f1be009.js>; rel=preload; as=script
+  Link: </framework-cd3e1e804d552fa282ef.js>; rel=preload; as=script
+  Link: </app-5f44fc4dd7fc1894e296.js>; rel=preload; as=script
+  Link: </styles-e9d24b1846c7d6eb9685.js>; rel=preload; as=script
+  Link: </aed2e917f30c051bccba91aa15989a75fd0bd633-f8ae38442ebcaca87b42.js>; rel=preload; as=script
+  Link: </component---node-modules-lekoarts-gatsby-theme-minimal-blog-core-src-templates-tag-query-tsx-6d5261cb188f0457dd2e.js>; rel=preload; as=script
+  Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </page-data/tags/vim/page-data.json>; rel=preload; as=fetch; crossorigin
 /offline-plugin-app-shell-fallback/
   Link: </webpack-runtime-35d8959d0cf20f1be009.js>; rel=preload; as=script
   Link: </framework-cd3e1e804d552fa282ef.js>; rel=preload; as=script

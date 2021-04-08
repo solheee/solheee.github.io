@@ -1,0 +1,160 @@
+---
+title: "TIL - git, node.js"
+date: 2021-04-07
+tags:
+    - TIL
+    - JS
+    - NODE.JS
+---
+
+###ToDo
+- [x] node.js에서 사용하는 package.json과 npm script에 대해 이해할 수 있다.
+    - [x] devDependencies와 dependencies의 차이점을 이해할 수 있다.
+    - [x] npm이 무엇인지, 모듈이 무엇인지 이해할 수 있다.
+- [x] 화살표 함수, Spread/Rest 문법, 구조 분해 할당을 사용할 수 있다.
+- [x] CommonJS의 도입 배경을 이해할 수 있다.
+    - [x] node.js에서 사용하는 require 문법 및 module.exports, exports에 대해 이해할 수 있다.
+    - [x] 모듈이 어떤 식으로 불리는 지 이해할 수 있다.
+- [ ] 클래스와 인스턴스라는 용어를 이해할 수 있다.
+    - [x] new 키워드의 사용법을 이해할 수 있다.
+    - [x] class 키워드의 사용법을 이해할 수 있다.
+    - [x] 현실 세계의 모델을 바탕으로 클래스의 메소드와 속성을 디자인할 수 있다.
+- [ ] this와 call, apply, bind와 같은 함수 메소드의 작동을 이해할 수 있다.
+
+
+# node.js vs 브라우저
+
+node.js는 서버를 만드는 환경만은 아니다, 프론트 엔드 영역에서는 node.js는 npm생태계를 활용한다.
+
+npm(Node Package Manager)이란 node.js환경에서 외부 라이브러리를 다운로드 받기 위한 대표적인 방법으로, 필요한 모듈이 모여있는 일종의 모듈스토어이다.
+
+package.json에는 해당 프로그램이 실행시키기 위해 필요한 모듈들이 무엇인지, 실행하는 방법, 테스트하는 방법 등 정보가 명시되어 있다.
+
+package.json 덕분에, 프로젝트를 코드를 전달할 때, 모듈을 다 전달하지 않아도 된다. 전달받는 사용자는 `npm install`명령어를 사용해 package.json이 필요하다고 하는 모듈을 받아올 수 있다
+
+받아온 모듈은 node_modules에 저장된다.
+
+---
+
+## package.json
+
+### dependency
+
+dependency란, 의존성 모듈이다. 특별히 개발이나 실행에 해당 모듈을 "의존"한다고해서 의존성(dependency)이라고 부른다
+
+```json
+  "dependencies": {
+    "@codestates-cc/submission-npm": "^1.1.3",
+    "range": "0.0.3"
+  },
+  "devDependencies": {
+    "@mochajs/json-file-reporter": "^1.3.0",
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2"
+  }
+```
+위 json형식에서 키는 모듈 이름, 값은 버전이다.
+
+**devDependencies** 에는 이 프로젝트를 개발하는 환경에서 필요한 모듈로, 실제 프로젝트 동작에 직접적으로 영향을 주지 않는 모듈들을 명시한다. (mocha같은 테스트 모듈)
+
+**dependencies** 와 devDependencies의 차이점은 실제 상품에서 사용할 모듈과, 개발용 모듈의 차이이다. dependencies에는 기술 스펙으로 사용되어야 할 라이브러리를 명시한다.
+
+```bash
+$ npm install mocha --save-dev
+$ npm install --save react
+```
+
+- `--save-dev` 옵션과 함께 모듈을 install 하면 자동으로 devDependencies에 추가된다.
+- `--save` 옵션은 생략이 가능하며, 자동으로 dependencies에 추가된다.
+
+`npm install`을 하면 명시된 dependency를 바탕으로 모듈을 설치한다
+
+### scripts
+
+```json
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha getListMultiplesOfTwo.test.js",
+    "report": "mocha getListMultiplesOfTwo.test.js --sort --reporter @mochajs/json-file-reporter",
+    "submit": "codestates-submission"
+  },
+```
+
+`$ npm run start` 는 `$ node index.js`를 뜻한다.
+
+---
+
+## 모듈
+`npm install`로 모듈을 다운로드 받아왔다면, 다음과 같이 불러올 수 있다.
+
+```js
+  const 모듈이_담긴_변수 = require('모듈이름')
+```
+
+<br />
+
+다른 스크립트를 불러오기 위해서는 `require`구문을 사용할 수 있다. 모듈도 다른 스크립트이다
+```js
+// script1.js
+const module2 = require('./script2.js')
+console.log(module2) // => 'this is module 2'
+```
+```js
+// script2.js
+module.exports = 'this is module 2'
+```
+
+`module.exports`로 내가 만든 모듈을 노출할 수 있다
+
+### CommonJs
+자바스크립트를 범용적인 목적으로 사용하기 위해 필요한 선결 조건은 모듈화이다.
+CommonsJS는 자바스크립트를 범용 언어로 사용하려고 조직한 자발적 워킹 그룹으로, 그에 필요한 명세(Specification)를 만드는 일을 한다. CommonJs에서 정의한 명세로는 모듈 명세가 있고, node.js의 모듈 또한 이 명세를 따르고있다.
+
+- 스코프: 모든 모듈은 자신만의 독립적인 실행 영역이 있어야 한다.
+- 정의: 모듈 정의는 전역객체이니 exports 객체를 이용한다.
+- 사용: 모듈 사용은 require 함수를 이용한다.
+
+### class
+```js
+class Car {
+	constructor(brand, name, color) {
+		this.brand = brand;
+		this.name = name;
+		this.color = color;
+	}
+
+	refuel() {
+		console.log(`${this.name}에 연료를 공급합니다`)
+	}
+
+	drive() {
+		console.log(`${this.name}가 운전을 시작합니다`)
+	}
+}
+
+let avante = new Car('hyundai', 'avante', 'black');
+let mini= new Car('bmw', 'mini', 'white');
+let beetles = new Car('volkswagen', 'beetles', 'red');
+
+avante.drive(); // => avante가 운전을 시작합니다
+mini.refuel(); // => mini에 연료를 공급합니다
+```
+
+`constructor` : 인스턴스가 초기화될 때 실행하는 **생성자** 함수
+
+
+### this
+```js
+function foo() {
+  return 'bar'
+}
+
+foo()
+foo.call()
+foo.apply()
+```
+
+- `.call`, `.apply` 호출은 명시적으로 `this`를 지정하고 싶을 때 사용한다.
+- 첫 번째 인자가 항상 `this`값이 된다
+
+콜, 어플라이... 이해 하나도 안된다..
